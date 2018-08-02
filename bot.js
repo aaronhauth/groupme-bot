@@ -71,7 +71,7 @@ function magic8ball(){
 
   var roll = Math.floor(Math.random() * Math.floor(messages.length));
 
-  postMessage(messages[roll])
+  postMessage("8-ball result: " + messages[roll])
 
 }
 
