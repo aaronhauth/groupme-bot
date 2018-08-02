@@ -11,7 +11,7 @@ function respond() {
       d8 = /^\/d8$/,
       d10 = /^\/d10$/,
       d12 = /^\/d12$/,
-      magic8ball = /^\/8ball$/;
+      the8ball = /^\/8ball$/;
 
   if(request.text) {
     this.res.writeHead(200);
@@ -33,7 +33,7 @@ function respond() {
     else if (d12.test(request.text)){
       rollDie(request, 12)
     }
-    else if (magic8ball.test(request.text)){
+    else if (the8ball.test(request.text)){
       magic8ball()
     }
     this.res.end();
