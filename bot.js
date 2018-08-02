@@ -23,6 +23,12 @@ function rollDie(request, size){
   var roll = Math.floor(Math.random() * Math.floor(size) + 1);
 
   var botResponse = firstName + " rolled a " + roll;
+  if (roll == 1 && size == 20)
+    botResponse += ". A CRITICAL FAIL!"
+
+  if (roll == 20 && size == 20)
+    botResponse += ". A CRITICAL SUCCESS!"
+    
   postMessage(botResponse)
 }
 
