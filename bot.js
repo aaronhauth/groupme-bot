@@ -9,7 +9,7 @@ function respond() {
 
   if(request.text && botRegex.test(request.text)) {
     this.res.writeHead(200);
-    postMessage(request.name);
+    rollDie(request, 20)
     this.res.end();
   } else {
     console.log("don't care");
@@ -18,13 +18,16 @@ function respond() {
   }
 }
 
-function postMessage(name) {
-  var botResponse, options, body, botReq;
-
-  var firstName = name.split(' ')[0];
-  var roll = Math.floor(Math.random() * Math.floor(20) + 1);
+function rollDie(request, size){
+  var firstName = request.name.split(' ')[0];
+  var roll = Math.floor(Math.random() * Math.floor(size) + 1);
 
   var botResponse = firstName + " rolled a " + roll;
+  postMessage(botResponse)
+}
+
+function postMessage(message) {
+  var options, body, botReq;
 
   options = {
     hostname: 'api.groupme.com',
@@ -34,10 +37,10 @@ function postMessage(name) {
 
   body = {
     "bot_id" : botID,
-    "text" : botResponse
+    "text" : message
   };
 
-  console.log('sending ' + botResponse + ' to ' + botID);
+  console.log('sending ' + message + ' to ' + botID);
 
   botReq = HTTPS.request(options, function(res) {
       if(res.statusCode == 202) {
