@@ -5,11 +5,11 @@ var botID = process.env.BOT_ID;
 
 function respond() {
   var request = JSON.parse(this.req.chunks[0]),
-      botRegex = /^\/cool guy$/;
+      botRegex = /^\/roll$/;
 
   if(request.text && botRegex.test(request.text)) {
     this.res.writeHead(200);
-    postMessage();
+    postMessage(request.name);
     this.res.end();
   } else {
     console.log("don't care");
@@ -18,10 +18,12 @@ function respond() {
   }
 }
 
-function postMessage() {
+function postMessage(name) {
   var botResponse, options, body, botReq;
 
-  botResponse = cool();
+  var roll = Math.floor(Math.random() * Math.floor(20) + 1)
+
+  var botResponse = `${String(name).split(' ')[0]} rolled a ${roll}`
 
   options = {
     hostname: 'api.groupme.com',
