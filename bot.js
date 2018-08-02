@@ -44,7 +44,7 @@ function rollDie(request, size){
   var firstName = request.name.split(' ')[0];
   var roll = Math.floor(Math.random() * Math.floor(size) + 1);
 
-  var botResponse = firstName + " rolled a " + roll;
+  var botResponse = firstName + " rolled a d" + size + " and got a " + roll;
   if (roll == 1 && size == 20)
     botResponse += ". A CRITICAL FAIL!"
 
