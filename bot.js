@@ -14,7 +14,6 @@ function respond() {
 
   if(request.text) {
     this.res.writeHead(200);
-    rollDie(request, 20)
     if (d20.test(request.text)){
       rollDie(request, 20)
     }
