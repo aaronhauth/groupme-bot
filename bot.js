@@ -11,7 +11,7 @@ function respond() {
       d8 = /^\/d8$/,
       d10 = /^\/d10$/,
       d12 = /^\/d12$/,
-      the8ball = /^\/8ball$/;
+      the8ball = /^\/8ball/;
 
   if(request.text) {
     this.res.writeHead(200);
