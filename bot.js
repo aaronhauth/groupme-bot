@@ -21,10 +21,10 @@ function respond() {
 function postMessage(name) {
   var botResponse, options, body, botReq;
 
-  var firstName = name.split(' ')[0]
-  var roll = Math.floor(Math.random() * Math.floor(20) + 1)
+  var firstName = name.split(' ')[0];
+  var roll = Math.floor(Math.random() * Math.floor(20) + 1);
 
-  var botResponse = `${firstName} rolled a ${roll}`
+  var botResponse = `${firstName} rolled a ${roll}`;
 
   options = {
     hostname: 'api.groupme.com',
