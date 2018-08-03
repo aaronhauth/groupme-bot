@@ -1,5 +1,12 @@
 var HTTPS = require('https');
-var cool = require('cool-ascii-faces');
+const { Client } = require('pg');
+
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true,
+});
+
+client.connect();
 
 var botID = process.env.BOT_ID;
 
@@ -11,9 +18,11 @@ function respond() {
       d8 = /^\/d8$/,
       d10 = /^\/d10$/,
       d12 = /^\/d12$/,
-      the8ball = /^\/8ball/;
+      the8ball = /^\/8ball/
+      snooze=/^\/snooze \d+$/;
+      
 
-  if(request.text) {
+  if(request.text && !isSnoozed) {
     this.res.writeHead(200);
     if (d20.test(request.text)){
       rollDie(request, 20)
@@ -36,12 +45,27 @@ function respond() {
     else if (the8ball.test(request.text)){
       magic8ball()
     }
+    else if (snooze.test(request.test)) {
+      let minutes = request.test.split(' ')[1]
+      snoozeBot(minutes)
+    }
     this.res.end();
   } else {
     console.log("don't care");
     this.res.writeHead(200);
     this.res.end();
   }
+}
+
+function snoozeBot(minutes){
+  if (minutes > 0 && minutes <= 60) {
+    client.query()
+  }
+
+}
+
+function isSnoozed(){
+
 }
 
 function rollDie(request, size){
